@@ -341,6 +341,12 @@
       return segment !== '';
     });
 
+    // 过滤掉仓库名（GitHub Pages 部署时 URL 中包含的仓库名段）
+    var repoSegments = ['lyg-travel'];
+    pathSegments = pathSegments.filter(function(segment) {
+      return repoSegments.indexOf(segment.replace('.html', '')) === -1;
+    });
+
     // 首页项
     var homeItem = document.createElement('li');
     var homeLink = document.createElement('a');
