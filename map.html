@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="连云港景点地图，在互动地图上探索花果山、连岛、海上云台山、孔望山等各大景区的地理位置与详细信息。">
+  <meta name="keywords" content="连云港地图,景点地图,高德地图,花果山地图,连岛地图,海上云台山地图">
+  <title>景点地图 — 连云港文旅</title>
+
+  <!-- 引入公共样式 -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- SEO JSON-LD 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": "连云港景点地图",
+    "description": "连云港是一座依山傍海的城市，拥有花果山、连岛、海上云台山、孔望山等众多知名景区。在互动地图上探索这些景点的地理位置。",
+    "url": "",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "连云港市",
+      "addressRegion": "江苏省",
+      "addressCountry": "CN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.6000,
+      "longitude": 119.1789
+    },
+    "includesAttraction": [
+      {
+        "@type": "TouristAttraction",
+        "name": "花果山风景区",
+        "description": "国家5A级旅游景区，以《西游记》花果山为原型，玉女峰为江苏最高峰。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "连岛",
+        "description": "江苏省最大的海岛，拥有大沙湾、苏马湾两大天然海滨浴场。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "海上云台山",
+        "description": "国家4A级景区，可俯瞰连云港港口全景与黄海风光。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "孔望山",
+        "description": "因孔子在此望海而得名，有东汉摩崖石刻等珍贵文物。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "渔湾风景区",
+        "description": "被誉为"江苏九寨沟"，以瀑布、溪流和峡谷闻名。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "东海温泉",
+        "description": "水温60-80度，富含矿物质，被誉为"华东第一温泉"。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "大伊山景区",
+        "description": "国家4A级景区，有石棺墓遗址、宋代古塔等文化遗迹。"
+      },
+      {
+        "@type": "TouristAttraction",
+        "name": "抗日山烈士陵园",
+        "description": "全国唯一以"抗日"命名的山，国家级抗战纪念设施。"
+      }
+    ]
+  }
+  </script>
+  <!-- SEO 增强标签 -->
+  <meta name="keywords" content="连云港地图,景点位置,高德地图,路线规划">
+  <meta name="description" content="连云港景点地图，标注花果山、连岛等八大景点位置">
+  <meta property="og:title" content="景点地图 - 连云港文旅">
+  <meta property="og:description" content="连云港景点地图，标注花果山、连岛等八大景点位置">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lyg-travel.cn/map.html">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lyg-travel.cn/map.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "景点地图",
+    "description": "连云港景点地图，标注花果山、连岛等八大景点位置",
+    "url": "https://lyg-travel.cn/map.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "连云港文旅",
+      "url": "https://lyg-travel.cn"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========== 公共导航栏 ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">山海</span>
+        <span class="logo-text">连云港文旅</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+  <li class="menu-item"><a href="index.html" class="nav-link"><span class="nav-icon nav-icon--home">&#9733;</span><span class="nav-text">首页</span></a></li>
+  <li class="menu-item"><a href="attractions.html" class="nav-link"><span class="nav-icon nav-icon--spot">&#9968;</span><span class="nav-text">景点资源</span></a></li>
+  <li class="menu-item"><a href="map.html" class="nav-link active"><span class="nav-icon nav-icon--map">&#9961;</span><span class="nav-text">景点地图</span></a></li>
+  <li class="menu-item"><a href="culture.html" class="nav-link"><span class="nav-icon nav-icon--culture">&#9834;</span><span class="nav-text">民俗文化</span></a></li>
+  <li class="menu-item"><a href="guide.html" class="nav-link"><span class="nav-icon nav-icon--guide">&#9752;</span><span class="nav-text">游玩攻略</span></a></li>
+  <li class="menu-item"><a href="news.html" class="nav-link"><span class="nav-icon nav-icon--news">&#9993;</span><span class="nav-text">文旅资讯</span></a></li>
+</ul>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== 面包屑导航 ========== -->
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">首页</a></li>
+        <li class="separator">/</li>
+        <li class="current">景点地图</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== 页面标题区域 ========== -->
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="fade-in-up">景点地图</h1>
+      <p class="fade-in-up delay-1">在地图上探索连云港各大景点，感受山海之城的无穷魅力。</p>
+    </div>
+  </section>
+
+  <!-- ========== 地图区域 ========== -->
+  <section class="section">
+    <div class="container">
+
+      <!-- 地图容器（占位模式，未配置 API Key 时显示） -->
+      <div class="map-container" id="mapContainer">
+        <!-- 模拟地图样式的占位区域 -->
+        <div style="
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #d4e8d4 0%, #c5dbc5 25%, #b8d4b8 50%, #aecfae 75%, #a3c8a3 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          font-family: var(--font-sans, 'Noto Sans SC', sans-serif);
+        ">
+          <!-- 模拟地图网格线 -->
+          <div style="
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+              repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(44,95,93,0.08) 49px, rgba(44,95,93,0.08) 50px),
+              repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(44,95,93,0.08) 49px, rgba(44,95,93,0.08) 50px);
+          "></div>
+          <!-- 模拟河流 -->
+          <div style="
+            position: absolute;
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(180deg, rgba(100,180,220,0.3), rgba(80,160,200,0.4));
+            border-radius: 50%;
+            transform: rotate(-30deg);
+            top: 50%;
+            left: 50%;
+            margin-top: -200px;
+            margin-left: -100px;
+          "></div>
+          <!-- 模拟海域 -->
+          <div style="
+            position: absolute;
+            right: -60px;
+            top: 10%;
+            width: 300px;
+            height: 80%;
+            background: linear-gradient(180deg, rgba(70,150,200,0.2), rgba(60,140,190,0.35));
+            border-radius: 50% 0 0 50%;
+          "></div>
+
+          <!-- 地图中心标注 -->
+          <div style="
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            background: rgba(255,255,255,0.9);
+            padding: 32px 48px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            border: 2px solid var(--color-primary, #2C5F5D);
+          ">
+            <div style="
+              font-size: 14px;
+              color: var(--text-muted, #737373);
+              margin-bottom: 8px;
+              letter-spacing: 2px;
+            ">MAP LOADING</div>
+            <div style="
+              font-size: 28px;
+              font-weight: 700;
+              color: var(--color-primary, #2C5F5D);
+              margin-bottom: 12px;
+              font-family: var(--font-serif, 'Noto Serif SC', serif);
+            ">地图加载中...</div>
+            <div style="
+              font-size: 15px;
+              color: var(--color-gold, #C4A265);
+              font-weight: 600;
+              margin-bottom: 6px;
+            ">连云港市 Lianyungang</div>
+            <div style="
+              font-size: 14px;
+              color: var(--text-secondary, #525252);
+            ">
+              经度 Lng: <span style="font-weight: 600; color: var(--color-primary, #2C5F5D);">119.1789</span>
+              &nbsp;&nbsp;
+              纬度 Lat: <span style="font-weight: 600; color: var(--color-primary, #2C5F5D);">34.6000</span>
+            </div>
+          </div>
+
+          <!-- 模拟地图上的景点标记点 -->
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #e74c3c;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            top: 22%;
+            left: 28%;
+          " title="花果山"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #3498db;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            top: 35%;
+            right: 20%;
+          " title="连岛"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #2ecc71;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            top: 28%;
+            left: 42%;
+          " title="海上云台山"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #f39c12;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            top: 45%;
+            left: 38%;
+          " title="孔望山"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #9b59b6;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            top: 55%;
+            left: 30%;
+          " title="渔湾风景区"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #1abc9c;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            bottom: 28%;
+            left: 22%;
+          " title="东海温泉"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #e67e22;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            bottom: 35%;
+            left: 50%;
+          " title="大伊山"></div>
+          <div style="
+            position: absolute;
+            z-index: 3;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #c0392b;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            bottom: 22%;
+            right: 25%;
+          " title="抗日山"></div>
+        </div>
+      </div>
+
+      <!-- 地图说明提示 -->
+      <div style="
+        margin-top: 16px;
+        padding: 16px 20px;
+        background: rgba(196, 162, 101, 0.1);
+        border: 1px solid rgba(196, 162, 101, 0.3);
+        border-radius: 8px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.8;
+      ">
+        <strong style="color: var(--color-gold);">提示：</strong>
+        地图功能需要配置高德地图 API Key 后启用。可在
+        <a href="https://lbs.amap.com" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); font-weight: 600; text-decoration: underline;">高德开放平台 (https://lbs.amap.com)</a>
+        免费申请。
+      </div>
+
+      <!-- ========== POI 景点列表面板 ========== -->
+      <div class="map-info-panel fade-in-up">
+        <h2 style="
+          font-size: 1.5rem;
+          color: var(--color-primary);
+          margin-bottom: 8px;
+        ">景点列表</h2>
+        <p style="
+          color: var(--text-secondary);
+          font-size: 0.95rem;
+          margin-bottom: 20px;
+        ">连云港八大必游景点，点击可查看详情</p>
+
+        <ul class="poi-list">
+
+          <!-- POI 1：花果山 -->
+          <li class="poi-item" data-name="花果山" data-lng="119.4200" data-lat="34.6500">
+            <span class="poi-marker">1</span>
+            <div class="poi-info">
+              <h4>花果山风景区</h4>
+              <p>国家5A级景区，西游记原型地，玉女峰为江苏省最高峰（624.4米），有水帘洞、三元宫等著名景点。</p>
+            </div>
+          </li>
+
+          <!-- POI 2：连岛 -->
+          <li class="poi-item" data-name="连岛" data-lng="119.4700" data-lat="34.7300">
+            <span class="poi-marker">2</span>
+            <div class="poi-info">
+              <h4>连岛海滨旅游度假区</h4>
+              <p>江苏省最大海岛，拥有大沙湾、苏马湾两大天然海滨浴场，是国家4A级景区。</p>
+            </div>
+          </li>
+
+          <!-- POI 3：海上云台山 -->
+          <li class="poi-item" data-name="海上云台山" data-lng="119.5200" data-lat="34.6900">
+            <span class="poi-marker">3</span>
+            <div class="poi-info">
+              <h4>海上云台山景区</h4>
+              <p>国家4A级景区，主峰海拔605米，登顶可俯瞰连云港港口全景、黄海风光和连岛全貌。</p>
+            </div>
+          </li>
+
+          <!-- POI 4：孔望山 -->
+          <li class="poi-item" data-name="孔望山" data-lng="119.1800" data-lat="34.6100">
+            <span class="poi-marker">4</span>
+            <div class="poi-info">
+              <h4>孔望山风景区</h4>
+              <p>因孔子在此望海而得名，拥有东汉佛教摩崖石刻、龙洞庵等珍贵历史遗迹。</p>
+            </div>
+          </li>
+
+          <!-- POI 5：渔湾风景区 -->
+          <li class="poi-item" data-name="渔湾风景区" data-lng="119.3500" data-lat="34.6200">
+            <span class="poi-marker">5</span>
+            <div class="poi-info">
+              <h4>渔湾风景区</h4>
+              <p>被誉为"江苏九寨沟"，以瀑布群、清澈溪流和幽深峡谷著称，夏季避暑胜地。</p>
+            </div>
+          </li>
+
+          <!-- POI 6：东海温泉 -->
+          <li class="poi-item" data-name="东海温泉" data-lng="118.7500" data-lat="34.5400">
+            <span class="poi-marker">6</span>
+            <div class="poi-info">
+              <h4>东海温泉旅游度假区</h4>
+              <p>水温60-80度，富含多种矿物质和微量元素，被誉为"华东第一温泉"，全年适宜。</p>
+            </div>
+          </li>
+
+          <!-- POI 7：大伊山 -->
+          <li class="poi-item" data-name="大伊山" data-lng="119.2300" data-lat="34.3000">
+            <span class="poi-marker">7</span>
+            <div class="poi-info">
+              <h4>大伊山景区</h4>
+              <p>国家4A级景区，由十二座山峰组成，有新石器时代石棺墓遗址、宋代古塔等。</p>
+            </div>
+          </li>
+
+          <!-- POI 8：抗日山 -->
+          <li class="poi-item" data-name="抗日山" data-lng="119.1300" data-lat="34.8500">
+            <span class="poi-marker">8</span>
+            <div class="poi-info">
+              <h4>抗日山烈士陵园</h4>
+              <p>全国唯一以"抗日"命名的山，国家级抗战纪念设施，安葬1800余位抗日烈士。</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 公共页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>关于我们</h3>
+          <p>山海连云港，一座依山傍海的港口城市，拥有丰富的自然景观和深厚的文化底蕴。本站致力于展示连云港独特的文旅资源。</p>
+        </div>
+        <div class="footer-col">
+          <h3>快捷导航</h3>
+          <ul>
+            <li><a href="attractions.html">景点资源</a></li>
+            <li><a href="map.html">景点地图</a></li>
+            <li><a href="culture.html">民俗文化</a></li>
+            <li><a href="guide.html">游玩攻略</a></li>
+            <li><a href="news.html">文旅资讯</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>联系方式</h3>
+          <p>地址：江苏省连云港市海州区</p>
+          <p>电话：0518-88888888</p>
+          <p>邮箱：info@lyg-travel.cn</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 连云港文旅 | 个人前端实战项目</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== 返回顶部按钮 ========== -->
+  <button class="back-to-top" id="backToTop" aria-label="返回顶部">&#9650;</button>
+
+  <!-- ========== 引入公共脚本 ========== -->
+  <script src="js/main.js"></script>
+  <script>
+    /**
+     * 地图页面 — POI 列表交互
+     * 当配置了高德地图 API Key 后，可取消注释下方注释代码以加载真实地图
+     */
+    (function () {
+      // POI 列表点击高亮效果
+      var poiItems = document.querySelectorAll('.poi-item');
+      poiItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+          // 移除其他项的高亮
+          poiItems.forEach(function (el) {
+            el.style.background = '';
+          });
+          // 当前项高亮
+          this.style.background = 'var(--bg-secondary)';
+          // 获取景点名称
+          var name = this.getAttribute('data-name');
+          var lng = this.getAttribute('data-lng');
+          var lat = this.getAttribute('data-lat');
+          console.log('选中景点：' + name + '，坐标：' + lng + ', ' + lat);
+        });
+      });
+    })();
+
+    /*
+    // ========== 以下代码在配置高德地图 API Key 后启用 ==========
+    // 加载高德地图 JS API 2.0
+    // <script src="https://webapi.amap.com/loader.js"></script>
+    //
+    // window._AMapSecurityConfig = {
+    //   securityJsCode: '您的安全密钥',
+    // };
+    //
+    // AMapLoader.load({
+    //   key: '您的高德地图API Key',
+    //   version: '2.0',
+    //   plugins: ['AMap.Scale', 'AMap.ToolBar'],
+    // }).then(function (AMap) {
+    //   var map = new AMap.Map('mapContainer', {
+    //     zoom: 10,
+    //     center: [119.1789, 34.6000],
+    //     mapStyle: 'amap://styles/fresh',
+    //   });
+    //
+    //   // 添加景点标记
+    //   var pois = [
+    //     { name: '花果山', lng: 119.4200, lat: 34.6500 },
+    //     { name: '连岛', lng: 119.4700, lat: 34.7300 },
+    //     { name: '海上云台山', lng: 119.5200, lat: 34.6900 },
+    //     { name: '孔望山', lng: 119.1800, lat: 34.6100 },
+    //     { name: '渔湾风景区', lng: 119.3500, lat: 34.6200 },
+    //     { name: '东海温泉', lng: 118.7500, lat: 34.5400 },
+    //     { name: '大伊山', lng: 119.2300, lat: 34.3000 },
+    //     { name: '抗日山', lng: 119.1300, lat: 34.8500 },
+    //   ];
+    //
+    //   pois.forEach(function (poi) {
+    //     var marker = new AMap.Marker({
+    //       position: [poi.lng, poi.lat],
+    //       title: poi.name,
+    //       label: { content: poi.name, direction: 'top' },
+    //     });
+    //     map.add(marker);
+    //   });
+    //
+    //   map.addControl(new AMap.Scale());
+    //   map.addControl(new AMap.ToolBar());
+    // }).catch(function (e) {
+    //   console.error('地图加载失败：', e);
+    // });
+    */
+  </script>
+  <!-- 增强交互组件 -->
+  <script src="js/enhancements.js"></script>
+
+</body>
+</html>
