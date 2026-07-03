@@ -248,89 +248,126 @@
   }
 
   /* ========================================
-   * 模块4：天气组件（模拟数据）
+   * 模块4：天气组件（高德天气 API + 模拟数据回退）
    * ======================================== */
 
   function initWeatherWidget() {
-    // 模拟天气数据（根据月份简单变化）
+    // 模拟天气数据（作为 API 失败时的 fallback）
     var month = new Date().getMonth() + 1;
     var weatherMap = {
-      '1':  { temp: '4°C',  desc: '晴',     humidity: '45%', wind: '北风3级' },
-      '2':  { temp: '7°C',  desc: '多云',   humidity: '50%', wind: '东北风3级' },
-      '3':  { temp: '14°C', desc: '多云转晴', humidity: '55%', wind: '东南风2级' },
-      '4':  { temp: '20°C', desc: '晴',     humidity: '60%', wind: '南风3级' },
-      '5':  { temp: '25°C', desc: '晴转多云', humidity: '65%', wind: '东南风3级' },
-      '6':  { temp: '28°C', desc: '多云',   humidity: '75%', wind: '南风3级' },
-      '7':  { temp: '30°C', desc: '多云转晴', humidity: '80%', wind: '东南风3级' },
-      '8':  { temp: '29°C', desc: '晴',     humidity: '78%', wind: '东风2级' },
-      '9':  { temp: '25°C', desc: '多云',   humidity: '65%', wind: '东北风2级' },
-      '10': { temp: '18°C', desc: '晴',     humidity: '55%', wind: '北风3级' },
-      '11': { temp: '12°C', desc: '多云转晴', humidity: '50%', wind: '西北风3级' },
-      '12': { temp: '6°C',  desc: '晴',     humidity: '42%', wind: '北风4级' }
+      '1':  { temp: '4°C',  desc: '晴',     wind: '北风3级',       city: '连云港' },
+      '2':  { temp: '7°C',  desc: '多云',   wind: '东北风3级',     city: '连云港' },
+      '3':  { temp: '14°C', desc: '多云转晴', wind: '东南风2级',     city: '连云港' },
+      '4':  { temp: '20°C', desc: '晴',     wind: '南风3级',       city: '连云港' },
+      '5':  { temp: '25°C', desc: '晴转多云', wind: '东南风3级',   city: '连云港' },
+      '6':  { temp: '28°C', desc: '多云',   wind: '南风3级',       city: '连云港' },
+      '7':  { temp: '30°C', desc: '多云转晴', wind: '东南风3级',   city: '连云港' },
+      '8':  { temp: '29°C', desc: '晴',     wind: '东风2级',       city: '连云港' },
+      '9':  { temp: '25°C', desc: '多云',   wind: '东北风2级',     city: '连云港' },
+      '10': { temp: '18°C', desc: '晴',     wind: '北风3级',       city: '连云港' },
+      '11': { temp: '12°C', desc: '多云转晴', wind: '西北风3级',   city: '连云港' },
+      '12': { temp: '6°C',  desc: '晴',     wind: '北风4级',       city: '连云港' }
     };
-    var w = weatherMap[month] || { temp: '26°C', desc: '多云转晴', humidity: '65%', wind: '东南风3级' };
+    var fallbackData = weatherMap[month] || { temp: '26°C', desc: '多云转晴', wind: '东南风3级', city: '连云港' };
 
-    // 判断是否为移动端（屏幕宽度 <= 768）
-    var isMobile = window.innerWidth <= 768;
-
-    // 天气图标映射
+    // 天气图标映射（兼容 API 返回的 dayweather 字段）
     function getWeatherIcon(desc) {
-      if (desc.indexOf('晴') !== -1) return '\u2600\uFE0F';
-      if (desc.indexOf('雨') !== -1) return '\uD83C\uDF27\uFE0F';
-      if (desc.indexOf('雪') !== -1) return '\u2744\uFE0F';
-      return '\u26C5';
+      if (desc.indexOf('晴') !== -1) return '\u2600\uFE0F';        // ☀️
+      if (desc.indexOf('雨') !== -1) return '\uD83C\uDF27\uFE0F';  // 🌧️
+      if (desc.indexOf('雪') !== -1) return '\u2744\uFE0F';        // ❄️
+      if (desc.indexOf('云') !== -1 || desc.indexOf('阴') !== -1) return '\u2601\uFE0F'; // ☁️
+      if (desc.indexOf('雾') !== -1 || desc.indexOf('霾') !== -1) return '\uD83C\uDF2B\uFE0F'; // 🌫️
+      return '\uD83C\uDF24\uFE0F';                                 // 🌤️
     }
 
-    var icon = getWeatherIcon(w.desc);
+    // 渲染天气组件
+    function renderWeather(w) {
+      var icon = getWeatherIcon(w.desc);
+      var isMobile = window.innerWidth <= 768;
 
-    // 创建天气组件
-    var widget = document.createElement('div');
-    widget.className = 'weather-widget';
-    widget.style.cssText =
-      'position:fixed;top:90px;right:20px;z-index:997;background:#fff;' +
-      'border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12);' +
-      'padding:10px 16px;font-size:13px;color:#333;' +
-      'display:flex;align-items:center;gap:8px;' +
-      'transition:all .3s ease;' + (isMobile ? 'display:none;' : '');
+      var widget = document.createElement('div');
+      widget.className = 'weather-widget';
+      widget.style.cssText =
+        'position:fixed;top:90px;right:20px;z-index:997;background:#fff;' +
+        'border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12);' +
+        'padding:10px 16px;font-size:13px;color:#333;' +
+        'display:flex;align-items:center;gap:8px;' +
+        'transition:all .3s ease;' + (isMobile ? 'display:none;' : '');
 
-    widget.innerHTML =
-      '<span class="weather-close" style="cursor:pointer;margin-left:6px;font-size:16px;' +
-      'color:#999;line-height:1;flex-shrink:0;">\u2715</span>' +
-      '<span style="font-size:20px;flex-shrink:0;">' + icon + '</span>' +
-      '<div style="flex-shrink:0;">' +
-        '<div style="font-weight:700;font-size:14px;">连云港 ' + w.temp + '</div>' +
-        '<div style="color:#666;">' + w.desc + ' | 湿度' + w.humidity + ' | ' + w.wind + '</div>' +
-      '</div>';
+      widget.innerHTML =
+        '<span class="weather-close" style="cursor:pointer;margin-left:6px;font-size:16px;' +
+        'color:#999;line-height:1;flex-shrink:0;">\u2715</span>' +
+        '<span style="font-size:20px;flex-shrink:0;">' + icon + '</span>' +
+        '<div style="flex-shrink:0;">' +
+          '<div style="font-weight:700;font-size:14px;">' + w.city + ' ' + w.temp + '</div>' +
+          '<div style="color:#666;">' + w.desc + ' ' + w.wind + '</div>' +
+          '<div style="color:#999;font-size:11px;margin-top:2px;">数据来源：高德地图</div>' +
+        '</div>';
 
-    document.body.appendChild(widget);
+      document.body.appendChild(widget);
 
-    // 创建折叠后的小按钮（移动端始终显示，桌面端隐藏）
-    var toggleBtn = document.createElement('button');
-    toggleBtn.className = 'weather-toggle-btn';
-    toggleBtn.style.cssText =
-      'position:fixed;top:90px;right:20px;z-index:997;width:36px;height:36px;' +
-      'border:none;border-radius:50%;cursor:pointer;font-size:18px;' +
-      'background:#fff;color:#333;box-shadow:0 2px 10px rgba(0,0,0,.12);' +
-      'display:flex;align-items:center;justify-content:center;' +
-      'transition:all .3s ease;' + (isMobile ? '' : 'display:none;');
-    toggleBtn.textContent = icon;
-    document.body.appendChild(toggleBtn);
+      // 创建折叠后的小按钮
+      var toggleBtn = document.createElement('button');
+      toggleBtn.className = 'weather-toggle-btn';
+      toggleBtn.style.cssText =
+        'position:fixed;top:90px;right:20px;z-index:997;width:36px;height:36px;' +
+        'border:none;border-radius:50%;cursor:pointer;font-size:18px;' +
+        'background:#fff;color:#333;box-shadow:0 2px 10px rgba(0,0,0,.12);' +
+        'display:flex;align-items:center;justify-content:center;' +
+        'transition:all .3s ease;' + (isMobile ? '' : 'display:none;');
+      toggleBtn.textContent = icon;
+      document.body.appendChild(toggleBtn);
 
-    // 关闭按钮 — 隐藏组件，显示小按钮
-    widget.querySelector('.weather-close').addEventListener('click', function () {
-      widget.style.display = 'none';
-      toggleBtn.style.display = 'flex';
-    });
+      // 关闭按钮 — 隐藏组件，显示小按钮
+      widget.querySelector('.weather-close').addEventListener('click', function () {
+        widget.style.display = 'none';
+        toggleBtn.style.display = 'flex';
+      });
 
-    // 小按钮 — 重新打开组件
-    toggleBtn.addEventListener('click', function () {
-      widget.style.display = 'flex';
-      toggleBtn.style.display = 'none';
-    });
+      // 小按钮 — 重新打开组件
+      toggleBtn.addEventListener('click', function () {
+        widget.style.display = 'flex';
+        toggleBtn.style.display = 'none';
+      });
 
-    // 移动端默认显示小按钮，不显示完整组件
-    if (isMobile) {
-      toggleBtn.style.display = 'flex';
+      // 移动端默认显示小按钮，不显示完整组件
+      if (isMobile) {
+        toggleBtn.style.display = 'flex';
+      }
+    }
+
+    // 尝试调用高德天气 API
+    var apiUrl = 'https://restapi.amap.com/v3/weather/weatherInfo?city=320700&key=0675aa2224a558c9d4be95e917a48295&extensions=base';
+
+    try {
+      fetch(apiUrl)
+        .then(function (response) {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.json();
+        })
+        .then(function (data) {
+          if (data.status === '1' && data.forecasts && data.forecasts.length > 0) {
+            var cast = data.forecasts[0].casts[0];
+            var city = data.forecasts[0].city;
+            var weatherData = {
+              city: city,
+              temp: cast.daytemp + '\u00B0C',
+              desc: cast.dayweather,
+              wind: cast.daywind + '风' + cast.daypower + '级'
+            };
+            renderWeather(weatherData);
+          } else {
+            // API 返回异常状态，回退到模拟数据
+            renderWeather(fallbackData);
+          }
+        })
+        .catch(function () {
+          // 网络错误、跨域等异常，回退到模拟数据
+          renderWeather(fallbackData);
+        });
+    } catch (e) {
+      // fetch 本身不可用（极老旧浏览器），回退到模拟数据
+      renderWeather(fallbackData);
     }
   }
 
